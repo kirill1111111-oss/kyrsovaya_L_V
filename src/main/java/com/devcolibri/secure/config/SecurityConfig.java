@@ -24,15 +24,15 @@ public class SecurityConfig {
     protected SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                        .requestMatchers("/", "/registration").permitAll()
+                        .requestMatchers("/", "/registration").permitAll()//Говорим о том что данные url доступны всем
                         .requestMatchers("/PC/**")
                         .hasAnyAuthority("ADMIN","USER")
-                        .anyRequest().authenticated()
+                        .anyRequest().authenticated()//указываем то что доступ есть только у данных ролей
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
-                )
+                )//Указываем что на данном url находится аутентификация
                 .logout((logout) -> logout.permitAll());
 
         return http.build();
@@ -42,10 +42,10 @@ public class SecurityConfig {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
                 .passwordEncoder(passwordEncoder());
-    }
+    }//указываем провайдеру на наш userDetailsService и даем ему хэш пароль
 
     @Bean
     PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(8);
-    }
+        return new BCryptPasswordEncoder();
+    }//Хэширует пароль
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 @Repository
-public interface PCRepository extends JpaRepository<PC, Long> {
+public interface PCRepository extends JpaRepository<PC, Long> {//создает обращения для БД
     List<PC> findByTitle(String title);
 
 }

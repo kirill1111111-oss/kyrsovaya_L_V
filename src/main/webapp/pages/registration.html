@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Магазин компьютеров</title>
+    <title>Телефонная книга</title>
         <style>
         	@import url(https://fonts.googleapis.com/css?family=Open+Sans);
             .btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
@@ -65,16 +65,16 @@
 </head>
 <body>
 <center>
-<b><h1>Магазин компьютеров</h1>
+<h1>Телефонная книга</h1>
 
 <div class="login">
-  <h1>Зарегестрироваться</h1>
+  <h1>Зарегистрироваться</h1>
     <form action="/registration" method="post">
-      <input type="text" name="name" placeholder="Username" required="required" />
+        <input type="text" name="name" placeholder="Username" required="required" />
         <input type="password" name="password" placeholder="Password" required="required" />
         <input type="email" name="email" placeholder="Email" required="required"/>
-        <input type="hidden" name="_csrf" value="${_csrf.token}">
-        <input type="submit" class="btn btn-primary btn-block btn-large"Let me in./>
+        <input type="hidden" name="_csrf" th:value="${_csrf.token}">
+        <input type="submit" class="btn btn-primary btn-block btn-large" value="Let me in."/>
     </form>
 </div>
 <br>

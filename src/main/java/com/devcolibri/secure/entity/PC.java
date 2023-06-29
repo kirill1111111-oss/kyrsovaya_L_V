@@ -1,31 +1,21 @@
 package com.devcolibri.secure.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
-import java.time.LocalDateTime;
-
-@Entity
-@Table(name = "Ads")
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+@Entity//Говорит Spring о том что обьекты данного класса необходимо поместить в таблицу БД
+@Table(name = "Record")//Даем Spring указание о том что таблица должна называться Record
+@Setter//Позволяем lombok самому создать set
+@Getter//Позволяем lombok самому создать get
+@AllArgsConstructor//Позволяем lombok самому создавать конструкторы над полями
+@NoArgsConstructor//Позволяем lombok самому создавать конструкторы над полями без параметров
 public class PC {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;//Разрешаем Spring самому генерировать id
     private String title;
+    private String number;
     private String description;
-    private int price;
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "PC")
-
-    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
-    @JoinColumn
-    private User user;
-    private LocalDateTime date;
-
-    @PrePersist
-    private void init() {
-        date = LocalDateTime.now();
-    }
 }

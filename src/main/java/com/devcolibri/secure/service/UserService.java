@@ -4,14 +4,12 @@ import com.devcolibri.secure.entity.enums.Role;
 import com.devcolibri.secure.entity.User;
 import com.devcolibri.secure.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
@@ -23,17 +21,15 @@ public class UserService {
             return false;
         }
 
-        if (userRepository.findByEmail("kiril.j2018@yandex.ru")==null){
+        if (userRepository.findByEmail("kiril.j2018@yandex.ru")==null){//Выдает роли в зависимости от почты
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.getRoles().add(Role.ADMIN);
-            log.info("Saving new user with email {}", email);
             userRepository.save(user);
             return true;
         }
         else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.getRoles().add(Role.USER);
-            log.info("Saving new user with email {}", email);
             userRepository.save(user);
             return true;
         }
